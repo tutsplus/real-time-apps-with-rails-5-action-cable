@@ -1,0 +1,76 @@
+<h2>Standings</h2>
+
+<table class="table table-bordered table-striped" style="font-size: 1.5rem; text-align: right">
+  <thead>
+    <tr>
+      <th>TEAM</th>
+      <th style="width: 75px; text-align: right;">W</th>
+      <th style="width: 75px; text-align: right;">L</th>
+      <th style="width: 75px; text-align: right;">PCT.</th>
+      <th style="width: 75px; text-align: right;">GB</th>
+      <th style="width: 125px; text-align: right; border-left: 1px solid #ddd;">HOME</th>
+      <th style="width: 125px; text-align: right;">ROAD</th>
+      <th style="width: 100px; text-align: right; border-left: 1px solid #ddd;">RS</th>
+      <th style="width: 100px; text-align: right;">RA</th>
+      <th style="width: 100px; text-align: right;">DIFF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% previous_team = nil %>
+    <% @teams.each do |team| %>
+      <tr>
+        <td style="text-align: left;"><%= team.name %></td>
+        <td><%= team.wins %></td>
+        <td><%= team.losses %></td>
+        <td><%= team.percentage.round(3) %></td>
+        <td><%= (previous_team && team.played_games.count > 0) ? team.games_behind(previous_team).round(1) : "–" %></td>
+        <td style="border-left: 1px solid #ddd;"><%= team.home_runs %></td>
+        <td><%= team.away_runs %></td>
+        <td style="border-left: 1px solid #ddd;"><%= team.points_for %></td>
+        <td><%= team.points_against %></td>
+        <td style="color: <%= team.difference > 0 ? "#0C0" : "#C00" %>;"><%= team.difference > 0 ? "+#{team.difference}" : team.difference %></td>
+      </tr>
+      <% previous_team = team %>
+    <% end %>
+  </tbody>
+
+</table>
+
+<hr>
+
+<h2>Games</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th style="width: 150px">Game Date</th>
+      <th style="width: 300px">Teams</th>
+      <th style="width: 50px">R</th>
+      <th style="width: 50px">H</th>
+      <th style="width: 50px">E</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td rowspan="2" style="vertical-align: middle; font-size: 2rem;">
+          <%= link_to game.started_at.to_s(:short), game %>
+        </td>
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.home_team.name %> (<%= game.is_winner? game.home_team %>)</td>
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.home_team_runs %></td>
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.home_team_hits %></td>
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.home_team_errors %></td>
+        <td rowspan="2" class="text-right" style="vertical-align: middle;">
+          <%= link_to "Admin", edit_game_path(game), class: "btn btn-default" %>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.away_team.name %> (<%= game.is_winner? game.away_team %>)</td>
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.away_team_runs %></td>
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.away_team_hits %></td>
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.away_team_errors %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

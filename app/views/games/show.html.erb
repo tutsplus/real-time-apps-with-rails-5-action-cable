@@ -1,0 +1,45 @@
+<p><%= link_to "Back to Games", games_path %></p>
+<h2><%= @game.started_at.to_s(:short) %> – <%= @game.home_team.name %> vs. <%= @game.away_team.name %></h2>
+<br>
+<div class="row">
+  <div class="col-sm-4">
+    <table class="table table-bordered" style="font-size: 1.75rem">
+      <tbody>
+        <tr>
+          <td><%= @game.home_team.name %> (<%= @game.is_winner? @game.home_team %>)</td>
+          <td><%= @game.home_team_runs %></td>
+          <td><%= @game.home_team_hits %></td>
+          <td><%= @game.home_team_errors %></td>
+        </tr>
+        <tr>
+          <td><%= @game.away_team.name %> (<%= @game.is_winner? @game.away_team %>)</td>
+          <td><%= @game.away_team_runs %></td>
+          <td><%= @game.away_team_hits %></td>
+          <td><%= @game.away_team_errors %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-8">
+    <table class="table table-condensed text-center" style="font-size: 1.3rem;">
+      <thead>
+        <tr>
+          <% @game.innings.each do |inning| %>
+            <th style="text-align: center; width: 30px"><%= inning.number %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @game.innings.each do |inning| %>
+            <td><%= inning.home_team_runs || "-" %></td>
+          <% end %>
+        </tr>
+        <tr>
+          <% @game.innings.each do |inning| %>
+            <td><%= inning.away_team_runs.nil? ? (inning.home_team_runs.nil? ? "-" : "X") : inning.away_team_runs %></td>
+          <% end %>
+        </tr>
+    </table>
+  </div>
+</div>
