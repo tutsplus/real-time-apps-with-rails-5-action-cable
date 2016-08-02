@@ -18,8 +18,8 @@ App.games = App.cable.subscriptions.create "GamesChannel",
       $('#away-team-errors').text(summary['away_team']['errors'])
     if innings = data['innings']
       innings.forEach (inning) =>
-        $("#inning-#{inning['number']}-home").text(inning['home'])
-        $("#inning-#{inning['number']}-away").text(inning['away'])
+        $("#inning-#{inning['number']}-home").text(inning['home']['runs'])
+        $("#inning-#{inning['number']}-away").text(inning['away']['runs'])
 
-  update: ->
-    @perform 'update'
+  update: (data) ->
+    @perform 'update', data

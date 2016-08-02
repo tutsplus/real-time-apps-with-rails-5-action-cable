@@ -9,7 +9,7 @@ class GamesChannel < ApplicationCable::Channel
     stop_all_streams
   end
 
-  def update
-    ActionCable.server.broadcast "games", message: "Hello World"
+  def update(data)
+    UpdateAndBroadcastGameJob.perform_later(data)
   end
 end
