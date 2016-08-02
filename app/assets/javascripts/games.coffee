@@ -16,4 +16,4 @@ $(document).ready ->
     new_value = if value.data('value') > 0 then value.data('value') - 1 else 0
     value.data('value', new_value)
     value.find('.value').text(new_value)
-    App.games.update inning: id, team: team, type: type, value: value
+    App.games.update inning: id, team: team, type: type, value: new_value
