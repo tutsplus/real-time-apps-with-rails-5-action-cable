@@ -4,3 +4,23 @@
 body {
   padding-top: 40px;
 }
+
+.inning-header {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.inning {
+  border-bottom: 1px solid #DDD;
+  padding: 5px 5px 0;
+  line-height: 28px;
+
+  .number {
+    font-size: 42px;
+    line-height: 1;
+  }
+
+  .row { margin-bottom: 5px; }
+  .col-sm-5 { border-left: 1px solid #DDD; }
+}

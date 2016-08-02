@@ -1,0 +1,110 @@
+<div data-channel="games" data-game-id="<%= @game.id %>">
+  <p><%= link_to "Back to Games", games_path %></p>
+  <h2 class="text-center"><%= @game.started_at.to_s(:short) %> – <%= @game.home_team.name %> vs. <%= @game.away_team.name %></h2>
+  <br>
+  <table class="table table-bordered" style="font-size: 1.75rem; width: 400px; margin: auto;">
+    <tbody>
+      <tr>
+        <td><%= @game.home_team.name %></td>
+        <td id="home-team-runs"><%= @game.home_team_runs %></td>
+        <td id="home-team-hits"><%= @game.home_team_hits %></td>
+        <td id="home-team-errors"><%= @game.home_team_errors %></td>
+      </tr>
+      <tr>
+        <td><%= @game.away_team.name %></td>
+        <td id="away-team-runs"><%= @game.away_team_runs %></td>
+        <td id="away-team-hits"><%= @game.away_team_hits %></td>
+        <td id="away-team-errors"><%= @game.away_team_errors %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="innings" style="width: 500px; margin: auto;">
+    <div class="inning-header row">
+      <div class="col-sm-2">Inning #</div>
+      <div class="col-sm-5">Home Team</div>
+      <div class="col-sm-5">Away Team</div>
+    </div>
+    <% @game.innings.each do |inning| %>
+      <div class="inning text-center row" data-inning-id="<%= inning.id %>">
+        <div class="number col-sm-2"><%= inning.number %></div>
+        <div class="team col-sm-5" data-team="home">
+          <div class="row type" data-type="runs" data-value="<%= inning.home_team_runs || 0 %>">
+            <div class="col-sm-3">R</div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default subtract">-</button>
+            </div>
+            <div class="col-sm-2 text-center value">
+              <%= inning.home_team_runs || "-" %>
+            </div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default add">+</button>
+            </div>
+          </div>
+          <div class="row type" data-type="hits" data-value="<%= inning.home_team_hits || 0 %>">
+            <div class="col-sm-3">H</div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default subtract">-</button>
+            </div>
+            <div class="col-sm-2 text-center value">
+              <%= inning.home_team_hits || "-" %>
+            </div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default add">+</button>
+            </div>
+          </div>
+          <div class="row type" data-type="errors" data-value="<%= inning.home_team_errors || 0 %>">
+            <div class="col-sm-3">E</div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default subtract">-</button>
+            </div>
+            <div class="col-sm-2 text-center value">
+              <%= inning.home_team_errors || "-" %>
+            </div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default add">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="team col-sm-5" data-team="away">
+          <div class="row type" data-type="runs" data-value="<%= inning.away_team_runs || 0 %>">
+            <div class="col-sm-3">R</div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default subtract">-</button>
+            </div>
+            <div class="col-sm-2 text-center value">
+              <%= inning.home_team_runs || "-" %>
+            </div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default add">+</button>
+            </div>
+          </div>
+          <div class="row type" data-type="hits" data-value="<%= inning.away_team_hits || 0 %>">
+            <div class="col-sm-3">H</div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default subtract">-</button>
+            </div>
+            <div class="col-sm-2 text-center value">
+              <%= inning.home_team_hits || "-" %>
+            </div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default add">+</button>
+            </div>
+          </div>
+          <div class="row type" data-type="errors" data-value="<%= inning.away_team_errors || 0 %>">
+            <div class="col-sm-3">E</div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default subtract">-</button>
+            </div>
+            <div class="col-sm-2 text-center value">
+              <%= inning.home_team_errors || "-" %>
+            </div>
+            <div class="col-sm-3">
+              <button class="btn btn-sm btn-default add">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
