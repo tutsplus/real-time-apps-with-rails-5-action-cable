@@ -53,23 +53,23 @@
   </thead>
   <tbody>
     <% @games.each do |game| %>
-      <tr>
+      <tr class="game-<%= game.id %> home">
         <td rowspan="2" style="vertical-align: middle; font-size: 2rem;">
           <%= link_to game.started_at.to_s(:short), game %>
         </td>
-        <td style="vertical-align: middle; font-size: 2rem;"><%= game.home_team.name %> (<%= game.is_winner? game.home_team %>)</td>
-        <td style="vertical-align: middle; font-size: 2rem;"><%= game.home_team_runs %></td>
-        <td style="vertical-align: middle; font-size: 2rem;"><%= game.home_team_hits %></td>
-        <td style="vertical-align: middle; font-size: 2rem;"><%= game.home_team_errors %></td>
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.home_team.name %></td>
+        <td style="vertical-align: middle; font-size: 2rem;" class="runs"><%= game.home_team_runs %></td>
+        <td style="vertical-align: middle; font-size: 2rem;" class="hits"><%= game.home_team_hits %></td>
+        <td style="vertical-align: middle; font-size: 2rem;" class="errors"><%= game.home_team_errors %></td>
         <td rowspan="2" class="text-right" style="vertical-align: middle;">
           <%= link_to "Admin", edit_game_path(game), class: "btn btn-default" %>
         </td>
       </tr>
-      <tr>
-        <td style="vertical-align: middle; font-size: 2rem;"><%= game.away_team.name %> (<%= game.is_winner? game.away_team %>)</td>
-        <td style="vertical-align: middle; font-size: 2rem;"><%= game.away_team_runs %></td>
-        <td style="vertical-align: middle; font-size: 2rem;"><%= game.away_team_hits %></td>
-        <td style="vertical-align: middle; font-size: 2rem;"><%= game.away_team_errors %></td>
+      <tr class="game-<%= game.id %> away">
+        <td style="vertical-align: middle; font-size: 2rem;"><%= game.away_team.name %></td>
+        <td style="vertical-align: middle; font-size: 2rem;" class="runs"><%= game.away_team_runs %></td>
+        <td style="vertical-align: middle; font-size: 2rem;" class="hits"><%= game.away_team_hits %></td>
+        <td style="vertical-align: middle; font-size: 2rem;" class="errors"><%= game.away_team_errors %></td>
       </tr>
     <% end %>
   </tbody>
