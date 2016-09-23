@@ -19,4 +19,4 @@ These are source files for the Envato Tuts+ course: [Real-Time Apps With Rails 5
 Available on [Tuts+](https://tutsplus.com). Teaching skills to millions worldwide.
 
 [published url]: https://code.tutsplus.com/courses/real-time-apps-with-rails-5-action-cable
-[instructor url]: https://tutsplus.com/authors/markus-muhlberger
+[instructor url]: https://tutsplus.com/authors/markus-muehlberger
